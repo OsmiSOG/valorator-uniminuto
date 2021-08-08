@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Valorator: Bogotá is not a Smartcity</title>
+    <link rel="stylesheet" href="../view/skin.css">
+  </head>
+  <body>
+    <div>
+      <div id="content" class="content">
+        <div id="map">
+        </div>
+        <div id="subcontent" class="subcontent">
+            <div id="evaluar" class="icon"><img src="../view/imgs/eval.png" alt="Evaluar la ciudad" height="48" width="48"> Evaluar la ciudad</div>
+            <div id="consultar" class="icon"><img src="../view/imgs/query.png" alt="Consultar sobre la ciudad" height="48" width="48">Consultar sobre la ciudad</div>
+        </div>
+      </div>
+      <div id="mensajes" class="messages">
+        englinx:D
+      </div>
+    </div>
+  </body>
+</html>
+
+
+var dl=datosLocalidad.split(",");
+            document.getElementById("valor").innerHTML =xhttp.responseText+"%";
+            document.getElementById("tipoValoracion").innerHTML =dl[1];
+            document.getElementById("localidad").innerHTML =dl[0]+": ";
+            alert(dl[0]+" "+dl[1]+" "+xhttp.responseText+"%");
+
+            'Localidad <div id="localidad"></div>'+ 
+  'Valoración de <div id="tipoValoracion"></div>'+ 
+  '<div id="valor"></div>'+ 

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Valoración empírica de Bogotá D.C.</title>
+    <!--
+    Customize this policy to fit your own app's needs. For more guidance, see:
+    https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+    Some notes:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+    * Enable inline JS: add 'unsafe-inline' to default-src
+    -->
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+	  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <!--<link rel="stylesheet" type="text/css" href="css/index.css">-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+     <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+    <link rel="stylesheet" href="view/skin.css">
+
+  </head>
+  <body>
+    <div id="allContent">
+      <div id="options" class="options">
+          <div id="evaluar" class="icon"><img src="view/imgs/eval.png" alt="Evaluar" height="48" width="48"> Evaluar</div>
+          <div id="consultar" class="icon"><img src="view/imgs/query.png" alt="Consultar" height="48" width="48">Consultar</div>
+          <div id="borrar" class="icon"><img src="view/imgs/eraser.png" alt="Borrar" height="48" width="48">Borrar</div>
+      </div>
+      <div id="content" class="content">
+        <div id="map" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom">
+        </div>
+        <div id="subcontent" class="subcontent">
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="data/globals.js"></script>
+    <script type="text/javascript" src="data/localidades.js"></script>
+    <script type="text/javascript" src="model/LocalidadDetector.js"></script>
+    <script type="text/javascript" src="data/localidades.js"></script>
+    <script type="text/javascript" src="view/FormConsult.js"></script>
+    <script type="text/javascript" src="view/FormReg.js"></script>
+    <script type="text/javascript" src="controller/ajax.js"></script>
+    <script type="text/javascript" src="controller/map.js"></script>
+    <script type="text/javascript" src="controller/cIndex.js"></script>
+  </body>
+</html>
