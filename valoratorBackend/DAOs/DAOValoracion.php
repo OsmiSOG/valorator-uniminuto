@@ -22,6 +22,14 @@ class DAOValoracion{
         //Separar los criterios de valoracion obtenidos
         $criteriosVal=$v->getValoracion();
         $localidad=intval($v->getLocalidad());
+
+        if ($localidad == 0) {
+            return [
+                'saved' => false,
+                'message' => 'localidad invalida',
+                'valoracion' => $v->getAll()
+            ];
+        }
         //De acuerdo a las reglas de valoracion (valoracionRules)
         //SEGURIDAD-----------------------------------------------------------------------------------------------
         if($criteriosVal['seguridad']=="seguro"){
