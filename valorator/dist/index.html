@@ -17,6 +17,7 @@
     <meta name="msapplication-tap-highlight" content="no">
 	  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <!--<link rel="stylesheet" type="text/css" href="css/index.css">-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
     crossorigin=""/>
@@ -24,32 +25,32 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
-    <!-- include the style -->
+    <!-- <link rel="stylesheet" href="./public/css/skin.css"> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <!-- include a theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
-    <link rel="stylesheet" href="public/css/skin.css">
-
   </head>
   <body>
-    <div id="allContent">
-      <div id="options" class="options">
-        <div id="evaluar" class="icon route-action" action="evaluate">
-          <img src="public/img/eval.png" alt="Evaluar" height="48" width="48" action="evaluate">Evaluar
+    <div id="allContent" class="container">
+      <div id="options" class="options ">
+        <div class="d-flex flex-row m-2">
+          <div id="evaluar" class="icon route-action btn mx-2" action="evaluate">
+            <img src="public/img/eval.png" alt="Evaluar" height="48" width="48" action="evaluate">Evaluar
+          </div>
+          <div id="consultar" class="icon route-action btn mx-2" action="consult"><img src="public/img/query.png" alt="Consultar" height="48" width="48" action="consult">Consultar</div>
+          <div id="borrar" class="icon route-action btn mx-2" action="borrar"><img src="public/img/eraser.png" alt="Borrar" height="48" width="48" action="borrar">Borrar</div>
         </div>
-        <div id="consultar" class="icon route-action" action="consult"><img src="public/img/query.png" alt="Consultar" height="48" width="48" action="consult">Consultar</div>
-        <div id="borrar" class="icon route-action" action="borrar"><img src="public/img/eraser.png" alt="Borrar" height="48" width="48" action="borrar">Borrar</div>
-      </div>
-      <div id="content" class="content">
-        <div id="map" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"></div>
-      </div>
-      <div id="subcontent" class="subcontent">
-        <!-- Here my App -->
-      </div>
+        <div id="content" class="content row">
+          <div id="map" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom col-md-8 col-sm-12" style="height: 40vmax;"></div>
+          <div id="subcontent" class="subcontent col-md-4 col-sm-12">
+            <!-- Here my App -->
+          </div>
+        </div>
       </div>
     </div>
 
-    <script src="src/index.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>

@@ -66,30 +66,30 @@ class DBOperator{
 	//Fin Gets y Sets-------------------
 	
 	function consult($mySqlOrder="", $capture="no"){
-            $consult=$this->mysqliObj->query($mySqlOrder);
+		$consult=$this->mysqliObj->query($mySqlOrder);
 	    if (!$consult) {
-       		 printf("Error: %s\n", $this->mysqliObj->error);
-    	    }
+			printf("Error: %s\n", $this->mysqliObj->error);
+		}
 
-            //Si se desea capturar datos desde la base de datos
-            if ($capture=="yes"){
-                $rowValues=Array();
-                while ($linea = mysqli_fetch_array($consult,MYSQLI_ASSOC)) {
-                    foreach ($linea as $valor_col) {
-                        $rowValues[]=$valor_col;
-                    }
-                }
-                //Reiniciar el objeto mySqli para garantizar su uso en varias consultas simultáneas :D----
-                $this->mysqliObj=new mysqli($this->host, $this->userName, $this->password, $this->dbName);
-                $this->mysqliObj->query("SET NAMES '".$this->charset."'");
-                //----------------------------------------------------------------------------------------
-                return $rowValues;	
-            }
+		//Si se desea capturar datos desde la base de datos
+		if ($capture=="yes"){
+			$rowValues=Array();
+			while ($linea = mysqli_fetch_array($consult,MYSQLI_ASSOC)) {
+				foreach ($linea as $valor_col) {
+					$rowValues[]=$valor_col;
+				}
+			}
+			//Reiniciar el objeto mySqli para garantizar su uso en varias consultas simultáneas :D----
+			$this->mysqliObj=new mysqli($this->host, $this->userName, $this->password, $this->dbName);
+			$this->mysqliObj->query("SET NAMES '".$this->charset."'");
+			//----------------------------------------------------------------------------------------
+			return $rowValues;	
+		}
             
 	}
         
-        function close(){
-            $this->mysqliObj->close();
-        }
+	function close(){
+		$this->mysqliObj->close();
+	}
 	
 }

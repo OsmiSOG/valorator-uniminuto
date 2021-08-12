@@ -11,11 +11,14 @@ require '../DAOs/DAOValoracion.php';
 require '../DAOs/DAOConsultarValoracion.php';
 require '../model/Consultor.php';
 
-if(isset($_GET['infoPoint'])){
-  $daoVal=new DAOValoracion();
-  $daoVal->save(new Valoracion($_GET['infoPoint']));
-}
-else if(isset($_GET['datosLocalidad'])){
+if(isset($_GET['action']) && $_GET['action'] == 'savePoint') {
+  if (isset($_POST)) {
+    $daoVal=new DAOValoracion();
+    $status = $daoVal->save(new Valoracion($_POST));
+    echo json_encode($status);
+  }
+} else if(isset($_GET['action']) && $_GET['action'] == 'datosLocalidad') {
+
   $datosConsulta=explode(",", $_GET['datosLocalidad']);
   $consultor=new Consultor($datosConsulta[0]);
   $resp=0;
@@ -35,22 +38,6 @@ else if(isset($_GET['datosLocalidad'])){
   
   echo $resp;
 
-
-  // $r=null;
-  // $datosConsulta=explode(",", $_GET['datosLocalidad']);
-  // $daoVal=new DAOConsultarValoracion();
-  // $r=$daoVal->consultar($datosConsulta[0], $datosConsulta[1]);
-  // if($r!=null){
-  //   echo $r[0];
-  // }
-  // else{
-  //   echo "no hay valoración";
-  // }
-  
-
-}
-
-
-else{
+} else {
   echo "???";
 }

@@ -9,7 +9,7 @@ define("muy_peligroso",0);
 define("muy_saludable",100);
 define("saludable",70);
 define("no_saludable", 50);
-define("perjudicial",50);
+define("perjudicial",30);
 define("muy_perjudicial",0);
 //Ambiente
 define("muy_agradable",100);

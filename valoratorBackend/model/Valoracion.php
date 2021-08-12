@@ -7,12 +7,15 @@ class Valoracion{
   /**
   *El constructor recibe una cadena de la forma lat,long,criterio1=val1-criterio2=val2-criterio3=val3,localidad...
   */
-  public function __construct($str){
-    $r=explode(",",$str);
-    $this->lat=$r[0];
-    $this->long=$r[1];
-    $this->valoracion=$r[2];
-    $this->localidad=$r[3];
+  public function __construct(Array $data){
+    $this->lat=$data['lat'];
+    $this->long=$data['lng'];
+    $this->valoracion= [
+      'seguridad' => $data['seguridad'],
+      'salud' => $data['salud'],
+      'ambiente' => $data['ambiente'] 
+    ];
+    $this->localidad=$data['localidad'];
   }
 
   public function getLat(){
@@ -40,5 +43,15 @@ class Valoracion{
   }
   public function setLocalidad($localidad){
     $this->localidad=$localidad;
+  }
+
+  public function getAll()
+  {
+    return [
+      'lat' => $this->getLat(),
+      'lng' => $this->getLong(),
+      'localidad' => $this->getLocalidad(),
+      'valoracion' => $this->getValoracion()
+    ];
   }
 }
