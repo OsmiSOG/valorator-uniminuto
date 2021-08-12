@@ -1,50 +1,23 @@
-function FormConsult(){
-  this.head="<div>";
-  this.content='<div id="mensajes" class="messages">'+
-  '</div>'+
-  '<div class="formItem"><label for="valorationType">Tipo de valoración:</label><select id="valorationType">'+
-  '<option>General</option>'+
-  '<option>Seguridad</option>'+
-  '<option>Salud</option>'+
-  '<option>Ambiente</option>'+
-  '</select></div>'+
-  '<div class="formItem"><label for="localidad">Localidad:</label><select id="localidad">'+
-  '<option></option>'+
-  '<option>Todas</option>'+
-  '<option>Usaquén</option>'+
-  '<option>Chapinero</option>'+
-  '<option>Santa Fe</option>'+
-  '<option>San Cristóbal</option>'+
-  '<option>Usme</option>'+
-  '<option>Tunjuelito</option>'+
-  '<option>Bosa</option>'+
-  '<option>Kennedy</option>'+
-  '<option>Fontibón</option>'+
-  '<option>Engativá</option>'+
-  '<option>Suba</option>'+
-  '<option>Barrios Unidos</option>'+
-  '<option>Teusaquillo</option>'+
-  '<option>Los Mártires</option>'+
-  '<option>Antonio Nariño</option>'+
-  '<option>Puente Aranda</option>'+
-  '<option>La Candelaria</option>'+
-  '<option>Rafael Uribe Uribe</option>'+
-  '<option>Ciudad Bolívar</option>'+
-  '</select></div>';
-  // '<div class="formItem"><label for="registros">Incluir registros:</label><select id="registros">'+
-  // '<option>Sí</option>'+
-  // '<option>No</option>'+
+let FormConsult = {
+  head:"<div>",
+  content:`
+    <h2>Consulta de Percepción</h2>
+    <select id="criterioType" class="form-select">
+      <option value="0">General</option>
+      <option value="1">Seguridad</option>
+      <option value="2">Salud</option>
+      <option value="3">Ambiental</option>
+    </select>
+  `,
+  footer:"</div>",
+  setContent() {
+    FormConsult.content=content;
 
-  // '</select></div>'+
-  //'<div class="formItem"> <button id="actualizar">Actualizar Mapa</button> </div>';
-  //'<div class="formItem"> <button id="registrarDatos">Registrar</button> </div>';
-  this.footer="</div>";
+  },
+  toString() {
+    return FormConsult.head+FormConsult.content+FormConsult.footer;
+  }
 }
 
-FormConsult.prototype.setContent=function(content){
-  this.content=content;
-};
 
-FormConsult.prototype.toString=function(){
-  return this.head+this.content+this.footer;
-};
+export default FormConsult

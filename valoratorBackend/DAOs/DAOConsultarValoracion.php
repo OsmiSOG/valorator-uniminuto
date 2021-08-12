@@ -10,21 +10,39 @@ class DAOConsultarValoracion{
     
   }
 
-  /**
-   * @param $localidad corresponde a un String con el nombre de la localidad a la que se quiere consultar
-   * @param $criterio corresponde a un entero correspondiente al criterio que se quiere valorar 1=Seguridad, 2=Salud, 3=Ambiente
-   * @return $resp corresponde a un array con las valoraciones almacenadas
-   */
-  public function consultar($localidad, $criterio){
-    $resp=array();
-    $resp=$this->dbo->consult("SELECT `valor` FROM `valoracionpunto` WHERE `localidad`='".$localidad."' AND `idCriterio`='".$criterio."'", "yes");
+  public function getLocalidades()
+  {
+    $dboMysql = $this->dbo->getMysqlObj();
+    return $dboMysql->query('SELECT * FROM localidades')->fetch_all(MYSQLI_ASSOC);;
+  }
 
-    //Actualizar la cantidad de consultas por criterio
+  public function getLocalidadesFaltantes()
+  {
+    $dboMysql = $this->dbo->getMysqlObj();
+    return $dboMysql->query(' SELECT * FROM localidades 
+      WHERE id NOT IN (SELECT id_localidad FROM valoracionpunto GROUP BY id_localidad)
+    ')->fetch_all(MYSQLI_ASSOC);;
+  }
+  
+  public function calcularValoraciones($criterio)
+  {
+    $dboMysql = $this->dbo->getMysqlObj();
+    $valoraciones = $dboMysql->query('SELECT localidades.id as id_localidad,
+        localidades.name as name_localidad,
+        criteriosvaloracion.id as id_criterio,
+        criteriosvaloracion.nombre as name_criterio,
+        SUM(valoracionpunto.valor) / COUNT(valoracionpunto.idpunto) as score_valoration,
+        COUNT(*) AS valorations_quantity
+      FROM valoracionpunto
+      LEFT JOIN localidades ON valoracionpunto.id_localidad = localidades.id
+      LEFT JOIN criteriosvaloracion ON valoracionpunto.idcriterio = criteriosvaloracion.id
+      WHERE idcriterio = '.$criterio.' '.
+      'GROUP BY id_localidad')->fetch_all(MYSQLI_ASSOC);
+    
     $cant=$this->dbo->consult("SELECT `cantConsultas` FROM `criteriosvaloracion` WHERE `id`='".$criterio."'", "yes");
     $cant[0]++;
     $this->dbo->consult("UPDATE `criteriosvaloracion` SET `cantConsultas`='".$cant[0]."' WHERE `id`='".$criterio."'", "no");
-
-    return $resp;
+    return $valoraciones;
   }
 
   public function consultarCantConsultasCriterio($idCriterio){

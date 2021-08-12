@@ -15,7 +15,7 @@ class Valoracion{
       'salud' => $data['salud'],
       'ambiente' => $data['ambiente'] 
     ];
-    $this->localidad=$data['localidad'];
+    $this->localidad=intval($data['localidad']);
   }
 
   public function getLat(){

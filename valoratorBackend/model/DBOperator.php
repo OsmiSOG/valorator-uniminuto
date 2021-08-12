@@ -58,10 +58,14 @@ class DBOperator{
 	function getPassword(){
 		return $this->password;
 	}
-        function getCharset(){
+	function getCharset(){
 		return $this->charset;
 	}
 	
+	public function getMysqlObj()
+	{
+		return $this->mysqliObj;
+	}
 	
 	//Fin Gets y Sets-------------------
 	

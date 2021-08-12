@@ -1,4 +1,5 @@
 <?php
+// require_once '../model/DBOperator.php';
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
@@ -17,27 +18,32 @@ if(isset($_GET['action']) && $_GET['action'] == 'savePoint') {
     $status = $daoVal->save(new Valoracion($_POST));
     echo json_encode($status);
   }
-} else if(isset($_GET['action']) && $_GET['action'] == 'datosLocalidad') {
+} else if(isset($_GET['action']) && $_GET['action'] == 'consult') {
 
-  $datosConsulta=explode(",", $_GET['datosLocalidad']);
-  $consultor=new Consultor($datosConsulta[0]);
-  $resp=0;
-  if($datosConsulta[1]==1){
-    $resp=$consultor->calcularValSeguridad();
-  }
-  else if($datosConsulta[1]==2){
-    $resp=$consultor->calcularValSalud();
-
-  }
-  else if($datosConsulta[1]==3){
-    $resp=$consultor->calcularValAmbiente();
-  }
-  else if($datosConsulta[1]==0){
-    $resp=$consultor->calcularIndiceBienestar();
-  }
-  
-  echo $resp;
+  $criterio=intval($_GET['criterio']);
+  $consultor=new Consultor();
+  $valoraciones = $consultor->getValoracionesLocalidades($criterio);
+  echo json_encode($valoraciones);
 
 } else {
   echo "???";
 }
+
+
+// updateTable();
+// function updateTable()
+// {
+//   $dbo=new DBOperator(host, userName, dbName, password, charset);
+//   $mysql = $dbo->getMysqlObj();
+//   $localidades = $mysql->query('SELECT * FROM `localidades` ')->fetch_all(MYSQLI_ASSOC);
+//   $valPunto = $mysql->query('SELECT * FROM `valoracionpunto` ')->fetch_all(MYSQLI_ASSOC);
+
+//   foreach ($valPunto as $p) {
+//     foreach ($localidades as $l) {
+//       if (mb_strtolower($p['localidad'], 'UTF-8') == mb_strtolower($l['name'], 'UTF-8')) {
+//         $mysql->query('UPDATE `valoracionpunto` SET `id_localidad` = '.$l['id'].' WHERE `valoracionpunto`.`idpunto` = '.$p['idpunto'].' AND `valoracionpunto`.`idcriterio` = '.$p['idcriterio']);
+//         break;
+//       }
+//     }
+//   }
+// }

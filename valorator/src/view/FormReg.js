@@ -1,6 +1,7 @@
 var FormEvaluate = {
   head: '<div>',
   content: `
+    <h2 class="text-center">Registrar Valoración</h2>
     <form id="formEvaluateMapPoint">
       <div class="form-group">
         <label for="">Latitud</label>
@@ -12,7 +13,8 @@ var FormEvaluate = {
       </div>
       <div class="form-group">
         <label for="">Localidad</label>
-        <input type="text" name="localidad" id="localidad" class="form-control" readonly>
+        <input type="text" id="localidadName" class="form-control" disabled>
+        <input type="hidden" name="localidad" id="localidadId" class="form-control">
       </div>
       <div class="form-group">
         <label for="">Seguridad</label>

@@ -1,6 +1,7 @@
 import L from "leaflet";
 import leafletPip from "@mapbox/leaflet-pip";
 import alertify from "alertifyjs";
+import gjLocalidadesData from "../data/poligonos-localidades.json";
 
 import { debug, config } from "../config";
 import FormEvaluate from "view/FormReg";
@@ -10,11 +11,6 @@ let popup = L.popup();
 
 function template() {
     return FormEvaluate.toString();
-}
-
-function gjLayerLocalidades() {
-    return fetch('https://raw.githubusercontent.com/OsmiSOG/valorator-uniminto/master/valorator/data/poligonos-localidades.geojson')
-        .then(res => res.json())
 }
 
 function sendInfo(e) {
@@ -28,6 +24,7 @@ function sendInfo(e) {
     }).then(res => res.json()).then((data) => {
         if (data.saved) {
             alertify.notify('datos Guardados exitosamente', 'success', 5, function () {});
+            popup.remove();
             e.target.reset();
         }
     })
@@ -36,21 +33,21 @@ function sendInfo(e) {
 function onMapClick(e) {
     let localidadPunto = "Outside From Bogota city";
     //Establecer a que localidad pertenece el punto elgido
-    gjLayerLocalidades().then(data => {
-        let gjLocalidades = L.geoJSON(data);
-        let zone = leafletPip.pointInLayer(e.latlng, gjLocalidades)[0]
+  
+    let gjLocalidades = L.geoJSON(gjLocalidadesData);
+    let zone = leafletPip.pointInLayer(e.latlng, gjLocalidades)[0]
 
-        localidadPunto = zone ? zone.feature.properties['Nombre de la localidad'] : localidadPunto;
-        ///---------------------------------------------------
-        popup
-            .setLatLng(e.latlng)
-            .setContent("Registre su percepción correspondiente a la ubicación:<br> Este punto pertenence a la localidad de "+ localidadPunto+"<br>Coords:" + e.latlng.toString())
-            .openOn(myMap);
+    localidadPunto = zone ? zone.feature.properties['Nombre de la localidad'] : localidadPunto;
+    ///---------------------------------------------------
+    popup
+        .setLatLng(e.latlng)
+        .setContent("Registre su percepción correspondiente a la ubicación:<br> Este punto pertenence a la localidad de "+ localidadPunto+"<br>Coords:" + e.latlng.toString())
+        .openOn(myMap);
 
-        document.getElementById('lat').value=e.latlng.lat.toString();
-        document.getElementById('lng').value=e.latlng.lng.toString();
-        document.getElementById('localidad').value=localidadPunto;
-    })
+    document.getElementById('lat').value=e.latlng.lat.toString();
+    document.getElementById('lng').value=e.latlng.lng.toString();
+    document.getElementById('localidadName').value=localidadPunto;
+    document.getElementById('localidadId').value=zone.feature.properties['Identificador unico de la localidad'];
         
 }
 
@@ -62,7 +59,13 @@ function init(map) {
     })
 }
 
+function destroy() {
+    myMap.off('click');
+    popup.remove();
+}
+
 export default {
     template: template(),
-    init
+    init,
+    destroy
 }

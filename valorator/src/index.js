@@ -3,7 +3,6 @@ window.$ = window.jQuery = require('jquery');
 import map from "./controller/map";
 import evaluateController from "./controller/evaluate";
 import consultCotroller from "./controller/consult";
-// import borrarContorller from "./controller/remove";
 
 
 const entryPoint = 'subcontent'
@@ -18,16 +17,14 @@ for (const element of actionsElement) {
 init();
 
 function action(event) {
-    const typeAction = event.target.attributes.action;
+    currentAction.destroy();
+    const typeAction = event.target.attributes.action.value;
     switch (typeAction) {
         case 'evaluate':
             currentAction = evaluateController;
             break;
         case 'consult':
             currentAction = consultCotroller;
-            break;
-        case 'borrar':
-        
             break;
         default:
             break;

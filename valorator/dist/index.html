@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
     crossorigin=""/>
-     <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <!-- include a theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <link rel="stylesheet" href="./public/css/consult-map-localidades.css">
   </head>
   <body>
     <div id="allContent" class="container">
@@ -40,7 +41,6 @@
             <img src="public/img/eval.png" alt="Evaluar" height="48" width="48" action="evaluate">Evaluar
           </div>
           <div id="consultar" class="icon route-action btn mx-2" action="consult"><img src="public/img/query.png" alt="Consultar" height="48" width="48" action="consult">Consultar</div>
-          <div id="borrar" class="icon route-action btn mx-2" action="borrar"><img src="public/img/eraser.png" alt="Borrar" height="48" width="48" action="borrar">Borrar</div>
         </div>
         <div id="content" class="content row">
           <div id="map" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom col-md-8 col-sm-12" style="height: 40vmax;"></div>
