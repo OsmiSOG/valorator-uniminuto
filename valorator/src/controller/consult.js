@@ -80,7 +80,7 @@ function getColor(d) {
            d > 60  ? '#FD8D3C' :
            d > 40  ? '#FC4E2A' :
            d > 20  ? '#E31A1C' :
-           d > 0   ? '#BD0026' :'';
+           d > 0   ? '#BD0026' :'#BD0026';
 }
 
 function style(feature) {
