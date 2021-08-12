@@ -5,16 +5,16 @@ var FormEvaluate = {
     <form id="formEvaluateMapPoint">
       <div class="form-group">
         <label for="">Latitud</label>
-        <input type="text" name="lat" id="lat" class="form-control" readonly>
+        <input type="text" name="lat" id="lat" class="form-control" readonly required>
       </div>
       <div class="form-group">
         <label for="">Longitud</label>
-        <input type="text" name="lng" id="lng" class="form-control" readonly>
+        <input type="text" name="lng" id="lng" class="form-control" readonly required>
       </div>
       <div class="form-group">
         <label for="">Localidad</label>
         <input type="text" id="localidadName" class="form-control" disabled>
-        <input type="hidden" name="localidad" id="localidadId" class="form-control">
+        <input type="hidden" name="localidad" id="localidadId" class="form-control" required>
       </div>
       <div class="form-group">
         <label for="">Seguridad</label>
