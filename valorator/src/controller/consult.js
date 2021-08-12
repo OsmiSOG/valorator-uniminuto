@@ -54,7 +54,6 @@ function onChangeCriterio(e) {
 function updateDataValoration(criterio) {
     fetch(`${config[debug]}?action=consult&criterio=${criterio}`).then(res => res.json()).then(data => {
         gjLocalidades.remove();
-        console.log(data);
         gjLocalidadesData.features.forEach(gjl => {
             data.forEach(l => {
                 if (parseInt(gjl.properties['Identificador unico de la localidad']) === parseInt(l['id_localidad'])) {
@@ -66,7 +65,6 @@ function updateDataValoration(criterio) {
                 }
             });
         });
-        console.log(gjLocalidadesData);
         gjLocalidades = L.geoJson(gjLocalidadesData, {
             style: style,
             onEachFeature: onEachFeature
