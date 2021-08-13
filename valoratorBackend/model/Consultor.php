@@ -32,7 +32,7 @@
       }
 
       $valoraciones = $this->daoVal->calcularValoraciones($criterio);
-      $localidadesFaltantes = $this->daoVal->getLocalidadesFaltantes();
+      $localidadesFaltantes = $this->daoVal->getLocalidadesFaltantes($criterio);
 
       // var_dump($valoraciones);
       // die();
