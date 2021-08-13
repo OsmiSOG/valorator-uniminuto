@@ -3,5 +3,5 @@
 define("userName","root");
 define("password","");
 define("host","localhost");
-define("dbName","valoratordb");
+define("dbName","changevalorator");
 define("charset","utf8");

@@ -16,12 +16,12 @@ class DAOConsultarValoracion{
     return $dboMysql->query('SELECT * FROM localidades')->fetch_all(MYSQLI_ASSOC);;
   }
 
-  public function getLocalidadesFaltantes()
+  public function getLocalidadesFaltantes($criterio)
   {
     $dboMysql = $this->dbo->getMysqlObj();
     return $dboMysql->query(' SELECT * FROM localidades 
-      WHERE id NOT IN (SELECT id_localidad FROM valoracionpunto GROUP BY id_localidad)
-    ')->fetch_all(MYSQLI_ASSOC);;
+      WHERE id NOT IN (SELECT id_localidad FROM valoracionpunto WHERE idcriterio = '.$criterio.' GROUP BY id_localidad)')
+        ->fetch_all(MYSQLI_ASSOC);
   }
   
   public function calcularValoraciones($criterio)
@@ -34,8 +34,8 @@ class DAOConsultarValoracion{
         SUM(valoracionpunto.valor) / COUNT(valoracionpunto.idpunto) as score_valoration,
         COUNT(*) AS valorations_quantity
       FROM valoracionpunto
-      LEFT JOIN localidades ON valoracionpunto.id_localidad = localidades.id
-      LEFT JOIN criteriosvaloracion ON valoracionpunto.idcriterio = criteriosvaloracion.id
+      INNER JOIN localidades ON valoracionpunto.id_localidad = localidades.id
+      INNER JOIN criteriosvaloracion ON valoracionpunto.idcriterio = criteriosvaloracion.id
       WHERE idcriterio = '.$criterio.' '.
       'GROUP BY id_localidad')->fetch_all(MYSQLI_ASSOC);
     
