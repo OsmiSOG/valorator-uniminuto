@@ -1,4 +1,5 @@
 import L from "leaflet";
+import alertify from "alertifyjs";
 
 import {config} from "../config";
 
@@ -12,5 +13,25 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     zoomOffset: -1,
     accessToken: config.accesTokenMapBox
 }).addTo(map);
+
+map.locate({
+    setView: true,
+    maxZoom: 12,
+    enableHighAccuracy: true
+})
+
+map.on('locationfound', onLocationFound);
+map.on('locationerror', onLocationError);
+
+function onLocationFound(e) {
+    L.marker(e.latlng)
+        .addTo(map)
+        .bindPopup('Tu ubicación aproximadamente')
+}
+
+function onLocationError(e) {
+    console.error(e);
+    alertify.notify(e.message, 'error', 5, function () {});
+}
 
 export default map;
