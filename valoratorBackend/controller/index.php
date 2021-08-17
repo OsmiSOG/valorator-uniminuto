@@ -13,10 +13,16 @@ require '../DAOs/DAOConsultarValoracion.php';
 require '../model/Consultor.php';
 
 if(isset($_GET['action']) && $_GET['action'] == 'savePoint') {
-  if (isset($_POST)) {
+  if (isset($_POST) && isset($_POST['localidad'])) {
     $daoVal=new DAOValoracion();
     $status = $daoVal->save(new Valoracion($_POST));
     echo json_encode($status);
+  } else {
+    echo json_encode([
+      'saved' => false,
+      'message' => 'Campos Vacios',
+      'valoracion' => null
+    ]);
   }
 } else if(isset($_GET['action']) && $_GET['action'] == 'consult') {
 
