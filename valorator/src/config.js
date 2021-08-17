@@ -1,4 +1,4 @@
-const debug = 'dev'
+const debug = 'prod'
 
 const config = {
     accesTokenMapBox: 'sk.eyJ1Ijoib3NtaXNvZyIsImEiOiJja3MzbjRwengwdGJxMnVxcTRmczhkbzd0In0.WhF86Hzw6_YMRcwsFMQXBg',
