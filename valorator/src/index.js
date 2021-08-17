@@ -3,7 +3,7 @@ window.$ = window.jQuery = require('jquery');
 import map from "./controller/map";
 import evaluateController from "./controller/evaluate";
 import consultCotroller from "./controller/consult";
-
+import test from "./test";
 
 const entryPoint = 'subcontent'
 let currentAction = evaluateController
@@ -41,3 +41,5 @@ function init() {
 function render(template, entryPoint = 'App') {
     document.getElementById(entryPoint).innerHTML = template
 }
+
+// test(-74.09764743085006,4.713431295443293);
