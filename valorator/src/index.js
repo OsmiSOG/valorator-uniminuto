@@ -3,7 +3,7 @@ window.$ = window.jQuery = require('jquery');
 import map from "./controller/map";
 import evaluateController from "./controller/evaluate";
 import consultCotroller from "./controller/consult";
-import test from "./test";
+// import test from "./test";
 
 const entryPoint = 'subcontent'
 let currentAction = evaluateController
